@@ -14,24 +14,33 @@ what "concerns" will we have?
 import { createRequire } from 'module'
 const require = createRequire(import.meta.url);
 
-
 var prompt = require('prompt');
-
 import { getProductById, getAllProducts } from "./operations/read.js";
+import { removeProductById } from "./operations/delete.js"
 
+//
 prompt.start();
 
-console.log("Enter A to see all products; enter I to see individual product details");
+console.log("Pick from the following operations:");
+console.log("A: List all products");
+console.log("I: Find individual product by ID");
+console.log("D: Delete individual product by ID");
 
 prompt.get(['operation'], function (err, result) {
   switch(result.operation) {
     case "A":
-      console.log(getAllProducts())
+      console.log(getAllProducts());
+      break;
     case "I":
       prompt.get(['id'], function (err, result) {
         var product = getProductById(result.id);
-        console.log(product);
-      });
+        console.log(product)});
+      break;
+    case "D":
+      // Delete logic here
+      prompt.get(['id'], function (err, result) {
+        var product = removeProductById(result.id);
+        console.log(product)});
+      break;
   }
 });
-

@@ -1,3 +1,4 @@
+// Import data from our import_db.js
 import { readDatabase } from '../data/import_db.js';
 
 let products = readDatabase("./data/db.txt");
@@ -7,18 +8,20 @@ let products = readDatabase("./data/db.txt");
 
 export function getProductById(id) {
     var product_match = false;
+    // loop through products data
     for(let i = 0; i < products.length; i++) {
+        // check for id match
         if(products[i].id == id) {
             product_match = true;
+            // return; immeddiately exist out of function and sends product back
             return products[i];
         }
     }
+    // if no match, return empty object
     if(!product_match) {
         return {};
     }
 }
-
-
 
 // read info on ALL products
 export function getAllProducts() {
