@@ -13,7 +13,7 @@ export function getProductById(id) {
         // check for id match
         if(products[i].id == id) {
             product_match = true;
-            // return; immeddiately exist out of function and sends product back
+            // return; immeddiately exits out of function and sends product back
             return products[i];
         }
     }
